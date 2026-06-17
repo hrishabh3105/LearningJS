@@ -14,28 +14,45 @@
     </div>
 
     <ul id="task-list"></ul>
+    <span id="counter"></span>
 
-    <script>
-            document.getElementById('addBtn').addEventListener('click', function(){
-            const taskText = document.getElementById('input-text').value.trim();
-            if(taskText === "") return;
+    <script>    
+        function updateCounter(){
+            const counter = document.getElementsByTagName('li').length; //get the number of tasks by getting how much li we have
+            document.getElementById('counter').innerText = `${counter} tasks Remaining`;
+        }
+       
+        function addBtn(){
+            const taskText = document.getElementById('input-text').value.trim(); //getting the value from the input box
+            if(taskText === "") return; // if the input is null then dont do anything
 
-            const newItem = document.createElement('li')
-            newItem.textContent = taskText;
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = "Delete";
-            newItem.appendChild(deleteBtn)
+            const newItem = document.createElement('li') // creating new li in newItem
+            newItem.textContent = taskText; // whatever user enters goes to newItem
+            const deleteBtn = document.createElement('button'); //creating delete button
+            deleteBtn.textContent = "Delete"; // Delete Button says "Delete"
+            newItem.appendChild(deleteBtn) // appending delete button to each task 
             deleteBtn.addEventListener('click', function(){
                 newItem.remove();
-            })
-             document.getElementById('task-list').appendChild(newItem);
-            document.getElementById('input-text').value = "";
+                updateCounter(); //call it here to update the counter
+            }) //writing the logic of delete button 
+             document.getElementById('task-list').appendChild(newItem); //appending each task to the ul 
+            document.getElementById('input-text').value = ""; // clearing the text box after appending 
             deleteBtn.style.backgroundColor = 'red';
+            updateCounter(); // call it here to update the counter
             
-
-           
+        }
+            document.getElementById('addBtn').addEventListener('click', function(){
+            addBtn();
         })
+            document.getElementById('input-text').addEventListener('keydown', function(e){
+                 if(e.key === 'Enter'){
+                addBtn();
+            }
+    })
         document.getElementById('addBtn').style.backgroundColor = 'green';
+        
     </script>
+
+    
 </body>
 </html>
