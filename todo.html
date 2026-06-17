@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+</head>
+
+<body>
+    <h1>ToDo List</h1>
+    <div>
+        <input type="text" id="input-text">
+        <button id="addBtn">add your task</button>
+    </div>
+
+    <ul id="task-list"></ul>
+
+    <script>
+            document.getElementById('addBtn').addEventListener('click', function(){
+            const taskText = document.getElementById('input-text').value.trim();
+            if(taskText === "") return;
+
+            const newItem = document.createElement('li')
+            newItem.textContent = taskText;
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = "Delete";
+            newItem.appendChild(deleteBtn)
+            deleteBtn.addEventListener('click', function(){
+                newItem.remove();
+            })
+             document.getElementById('task-list').appendChild(newItem);
+            document.getElementById('input-text').value = "";
+            deleteBtn.style.backgroundColor = 'red';
+            
+
+           
+        })
+        document.getElementById('addBtn').style.backgroundColor = 'green';
+    </script>
+</body>
+</html>
