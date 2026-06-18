@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const requestURL = 'https://api.github.com/users/hrishabh3105'
+    const xhr = new XMLHttpRequest()  //to send xml ajax request // creating a xmlhttprequest object
+    xhr.open('GET', requestURL)
+    xhr.onreadystatechange = function(){ //onreadystatechange method constantly tracks the state
+        console.log(xhr.readyState) ; //xhr.readystate gets the current state 
+        if(xhr.readyState === 4){
+           const data = JSON.parse(this.responseText) //if we simply log responseText it returns json as string. This converts that into js object.OPTIONAL
+            //console.log(this.responseText);  
+            console.log(data.followers)
+            
+        }
+    }
+    xhr.send();  //xhr.send calls open(), open() is not called automatically
+</script>
+</html>
