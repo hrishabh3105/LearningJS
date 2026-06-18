@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async</title>
+</head>
+<body>
+    <h1>Set timeout in js</h1>
+    <button id="stop">Stop</button>
+
+    <script>
+        setTimeout(() => {              // basic syntax of setTimeout function 
+            console.log("Hrishabh");
+        },2000);        
+
+        const sayName = function(){
+            console.log("Hrishabh")
+        }
+        setTimeout(sayName, 2000)       //function could be passed as reference too
+        
+        const changeh1 = function(){
+            document.querySelector('h1').innerHTML = "Learning HTML"        //change the heading after 2s
+        }
+        const changeMe = setTimeout(changeh1, 2000);
+
+        document.querySelector('#stop').addEventListener('click', function(){   //adding clearTimeout to the stop button 
+            clearTimeout(changeMe);
+            console.log("Stopped")
+        })
+
+    </script>
+</body>
+</html>
